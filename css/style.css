@@ -15,81 +15,111 @@
 @media(max-width:767px){body{font-size:14px}.navbar-brand{font-size:.78rem}.brand-mark{width:25px;height:25px;margin-right:6px}.nav-link{font-size:.82rem}.sound-toggle{font-size:.72rem;padding:7px 10px}.hero{padding-top:100px;padding-bottom:60px}.hero-copy h1{font-size:clamp(2.05rem,9.5vw,3.1rem);letter-spacing:-.045em}.hero-description{font-size:.91rem;line-height:1.65}.eyebrow{font-size:.68rem;margin-bottom:18px}.hero-stats strong{font-size:1.1rem}.hero-stats span{font-size:.59rem}.section{padding-top:58px;padding-bottom:58px}.section-heading{margin-bottom:32px}.section-heading h2,h2{font-size:clamp(1.75rem,7.5vw,2.45rem)}.section-heading p:not(.overline){font-size:.86rem;line-height:1.65}.overline{font-size:.61rem;letter-spacing:.14em}.story-photo img{height:320px}.timeline-item h3{font-size:.98rem}.timeline-item p{font-size:.82rem;line-height:1.65}.memory-card{height:285px}.memory-overlay{padding:15px}.memory-overlay strong{font-size:1.05rem}.memory-overlay small{font-size:.68rem}.detail-card p,.prayer-card p{font-size:.83rem}.freefire-card{grid-template-columns:1fr;padding:16px;gap:16px}.freefire-art{height:210px}.freefire-copy h3{font-size:1.22rem}.freefire-copy p:not(.overline){font-size:.83rem;line-height:1.65}.quiz-panel{padding:20px 16px}.quiz-box{padding:17px}.quiz-box h3{font-size:1.05rem}.answer-btn{font-size:.8rem;padding:11px}.letter-wrap{padding:26px 17px}.letter-content p{font-size:.84rem;line-height:1.7}.btn{font-size:.8rem;padding:11px 14px}.site-footer .navbar-brand{font-size:.78rem}.site-footer p{font-size:.68rem}.site-footer>div>span{font-size:.64rem}}
 @media(max-width:380px){.hero-stats{gap:8px}.hero-stats strong{font-size:1rem}.hero-stats span{font-size:.55rem}.hero-visual{height:320px}.hero-photo-wrap{width:220px;height:290px}.floating-tag{font-size:.62rem;padding:8px 9px}.memory-card{height:250px}.filter-btn{font-size:.7rem;padding:8px 11px}}
 
-/* Mobile display correction only: prevent zoomed-out layout and oversized photo preview */
-html {
-  width: 100%;
-  max-width: 100%;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-body {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  margin: 0;
-  overflow-x: clip;
-}
-img, video, canvas, svg {
-  max-width: 100%;
-}
-.container, .container-fluid, .row, [class*="col-"] {
-  min-width: 0;
-}
 
-/* Keep the clicked photo inside the phone viewport; preserve its original proportions. */
-#photoModal.modal {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+/* MOBILE SCREEN FIT FIX — layout only; preserve existing colours, content and photos */
+html, body { max-width:100%; overflow-x:clip; }
+img, video, canvas, svg { max-width:100%; }
+.container, .container-fluid { min-width:0; }
+.row > *, [class*="col-"] { min-width:0; }
+.hero, .hero-copy, .hero-visual, .section, .section-heading, .story-grid,
+.quiz-panel, .quiz-box, .letter-wrap, .detail-card, .prayer-card,
+.freefire-card, .site-footer .container { min-width:0; max-width:100%; }
+.hero-copy h1, h1, h2, h3, p, a, button, small, strong { overflow-wrap:anywhere; }
+.memory-card-wrap { min-width:0; }
+.photo-modal { width:100%; max-width:100%; overflow:hidden; }
+.photo-modal #modalImage {
+  display:block;
+  width:auto !important;
+  height:auto !important;
+  max-width:calc(100% - 24px) !important;
+  max-height:calc(100dvh - 150px) !important;
+  object-fit:contain;
+  margin:0 auto;
+  padding:0;
 }
 #photoModal .modal-dialog {
-  width: calc(100% - 1rem);
-  max-width: 900px;
-  margin: .5rem auto;
+  width:auto;
+  max-width:min(920px, calc(100vw - 24px));
+  margin:12px auto;
 }
-#photoModal .photo-modal {
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
+#photoModal .modal-content { max-height:calc(100dvh - 24px); overflow-y:auto; }
+#photoModal #modalCaption { overflow-wrap:anywhere; padding:12px !important; }
+@media (max-width:767px) {
+  .container { padding-left:16px; padding-right:16px; }
+  .section { padding-top:44px; padding-bottom:44px; }
+  .hero { padding-left:0; padding-right:0; }
+  .hero-visual { width:100%; max-width:100%; overflow:hidden; }
+  .hero-photo-wrap { max-width:78vw; }
+  .story-photo img { width:100%; max-width:100%; object-fit:cover; }
+  .memory-card { width:100%; height:clamp(220px, 72vw, 310px); }
+  .filter-row { gap:7px; margin-bottom:22px; }
+  .filter-btn { max-width:100%; }
+  .quiz-panel { width:100%; }
+  .letter-wrap { width:100%; }
+  .freefire-card { width:100%; }
+  .site-footer .container { padding-left:16px; padding-right:16px; }
+  #photoModal .modal-dialog { max-width:calc(100vw - 20px); margin:10px auto; }
+  #photoModal .modal-content { max-height:calc(100dvh - 20px); }
+  .photo-modal #modalImage { max-width:calc(100% - 16px) !important; max-height:calc(100dvh - 180px) !important; }
 }
-#photoModal .photo-modal img,
-#photoModal #modalImage {
-  display: block;
-  width: auto !important;
-  height: auto !important;
-  max-width: 100% !important;
-  max-height: calc(100dvh - 150px) !important;
-  object-fit: contain !important;
-  padding: 0 8px !important;
-  margin: 0 auto;
+@media (max-width:380px) {
+  .container { padding-left:13px; padding-right:13px; }
+  .section { padding-top:38px; padding-bottom:38px; }
+  .hero-visual { height:300px; }
+  .hero-photo-wrap { width:min(210px, 68vw); }
+  .hero-copy h1 { font-size:clamp(1.9rem, 10vw, 2.5rem); }
+  .hero-stats { flex-wrap:wrap; }
+  .memory-card { height:230px; }
+  #photoModal .modal-dialog { max-width:calc(100vw - 16px); }
+  .photo-modal #modalImage { max-height:calc(100dvh - 165px) !important; }
 }
-#photoModal #modalCaption {
-  max-width: 100%;
-  overflow-wrap: anywhere;
-  word-break: normal;
+@media (orientation:landscape) and (max-height:500px) {
+  #photoModal .modal-content { max-height:calc(100dvh - 12px); }
+  .photo-modal #modalImage { max-height:calc(100dvh - 110px) !important; }
 }
 
+/* ACTUAL MOBILE VIEWPORT WIDTH FIX: prevent page-level horizontal blank space */
 @media (max-width: 767px) {
-  body { font-size: 14px; }
-  .container, .container-fluid { padding-left: 14px; padding-right: 14px; }
-  .row { --bs-gutter-x: 1rem; }
-  .hero, .hero-copy, .hero-visual, .story-grid, .freefire-card,
-  .quiz-panel, .letter-wrap, .section-heading {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    overflow-x: hidden !important;
+  }
+  body { position: relative; }
+  body > *, main, header, footer, nav, section {
+    max-width: 100%;
+  }
+  .container, .container-fluid {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .row {
+    max-width: 100%;
+    --bs-gutter-x: 1.25rem;
+  }
+  .row > *, [class*="col-"] {
     min-width: 0;
     max-width: 100%;
   }
+  .hero, .story-grid, .quiz-panel, .freefire-card,
+  .section-heading, .section-soft, .final-cta, .site-footer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .hero-visual, .orbit, .floating-tag, .ambient {
+    max-width: 100%;
+  }
   .hero-visual { overflow: hidden; }
-  .orbit-a, .orbit-b { max-width: 100%; }
-  .memory-card { width: 100%; max-width: 100%; height: clamp(220px, 68vw, 310px); }
-  .memory-card img { width: 100%; height: 100%; object-fit: cover; }
-  .filter-row, .gallery-filters { max-width: 100%; }
-  #photoModal .modal-dialog { width: calc(100% - 1rem); margin: .5rem auto; }
-  #photoModal .photo-modal img,
-  #photoModal #modalImage { max-height: calc(100dvh - 170px) !important; }
-}
-@media (max-width: 380px) {
-  .container, .container-fluid { padding-left: 12px; padding-right: 12px; }
-  .memory-card { height: 235px; }
-  #photoModal .modal-dialog { width: calc(100% - .75rem); }
-  #photoModal .photo-modal img,
-  #photoModal #modalImage { max-height: calc(100dvh - 185px) !important; }
+  .hero-copy, .story-grid > *, .quiz-panel > *, .freefire-card > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .hero-copy h1, .section-heading h2, .letter-wrap h2,
+  .timeline-item p, .letter-content p, .freefire-copy p {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+  .site-footer .container { width: 100% !important; }
 }
