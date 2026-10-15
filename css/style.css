@@ -14,3 +14,134 @@
 .heart-brand{background:transparent!important;color:#ff637d!important;border:1px solid #ff637d55;border-radius:50%!important;font-size:1.2rem;line-height:1}.freefire-card{display:grid;grid-template-columns:.8fr 1.2fr;gap:26px;align-items:center;padding:22px;border:1px solid #ffffff13;border-radius:22px;background:linear-gradient(120deg,#151522,#101019)}.freefire-art{height:250px;overflow:hidden;border-radius:15px}.freefire-art img{width:100%;height:100%;object-fit:cover;object-position:center 30%}.freefire-copy h3{font-family:'Space Grotesk';font-size:1.5rem;margin:10px 0}.freefire-copy p:not(.overline){font-size:.9rem;margin-bottom:14px}.freefire-tag{display:inline-block;border:1px solid #ffad4d55;background:#ffad4d0c;color:#ffc37c;padding:8px 12px;border-radius:30px;font-size:.7rem;letter-spacing:.08em;font-weight:700}
 @media(max-width:767px){body{font-size:14px}.navbar-brand{font-size:.78rem}.brand-mark{width:25px;height:25px;margin-right:6px}.nav-link{font-size:.82rem}.sound-toggle{font-size:.72rem;padding:7px 10px}.hero{padding-top:100px;padding-bottom:60px}.hero-copy h1{font-size:clamp(2.05rem,9.5vw,3.1rem);letter-spacing:-.045em}.hero-description{font-size:.91rem;line-height:1.65}.eyebrow{font-size:.68rem;margin-bottom:18px}.hero-stats strong{font-size:1.1rem}.hero-stats span{font-size:.59rem}.section{padding-top:58px;padding-bottom:58px}.section-heading{margin-bottom:32px}.section-heading h2,h2{font-size:clamp(1.75rem,7.5vw,2.45rem)}.section-heading p:not(.overline){font-size:.86rem;line-height:1.65}.overline{font-size:.61rem;letter-spacing:.14em}.story-photo img{height:320px}.timeline-item h3{font-size:.98rem}.timeline-item p{font-size:.82rem;line-height:1.65}.memory-card{height:285px}.memory-overlay{padding:15px}.memory-overlay strong{font-size:1.05rem}.memory-overlay small{font-size:.68rem}.detail-card p,.prayer-card p{font-size:.83rem}.freefire-card{grid-template-columns:1fr;padding:16px;gap:16px}.freefire-art{height:210px}.freefire-copy h3{font-size:1.22rem}.freefire-copy p:not(.overline){font-size:.83rem;line-height:1.65}.quiz-panel{padding:20px 16px}.quiz-box{padding:17px}.quiz-box h3{font-size:1.05rem}.answer-btn{font-size:.8rem;padding:11px}.letter-wrap{padding:26px 17px}.letter-content p{font-size:.84rem;line-height:1.7}.btn{font-size:.8rem;padding:11px 14px}.site-footer .navbar-brand{font-size:.78rem}.site-footer p{font-size:.68rem}.site-footer>div>span{font-size:.64rem}}
 @media(max-width:380px){.hero-stats{gap:8px}.hero-stats strong{font-size:1rem}.hero-stats span{font-size:.55rem}.hero-visual{height:320px}.hero-photo-wrap{width:220px;height:290px}.floating-tag{font-size:.62rem;padding:8px 9px}.memory-card{height:250px}.filter-btn{font-size:.7rem;padding:8px 11px}}
+
+
+/* Responsive-only patch: keeps existing HTML, colours, photos and content unchanged */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+img, video, canvas, svg {
+  max-width: 100%;
+}
+.container, .container-fluid, .row, main, section, footer, nav {
+  min-width: 0;
+}
+.row {
+  --bs-gutter-x: clamp(0.75rem, 3vw, 1.5rem);
+}
+.gallery {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+.memory-card-wrap {
+  min-width: 0;
+}
+.memory-card {
+  display: block;
+  max-width: 100%;
+  touch-action: manipulation;
+}
+.memory-card img {
+  display: block;
+  max-width: 100%;
+}
+#photoModal {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+#photoModal .modal-dialog {
+  width: auto;
+  max-width: min(960px, calc(100vw - 2rem));
+  margin: 1rem auto;
+}
+#photoModal .modal-content {
+  max-width: 100%;
+  overflow: hidden;
+}
+#photoModal .photo-modal img,
+#photoModal #modalImage {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 75vh;
+  object-fit: contain;
+  padding: 0;
+  margin: 0 auto;
+}
+#photoModal #modalCaption {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+@media (max-width: 767.98px) {
+  .container, .container-fluid {
+    max-width: 100%;
+  }
+  .section, section {
+    scroll-margin-top: 72px;
+  }
+  .gallery {
+    --bs-gutter-x: 0.85rem;
+    --bs-gutter-y: 0.85rem;
+  }
+  .memory-card {
+    width: 100%;
+    height: clamp(220px, 68vw, 320px);
+  }
+  #photoModal .modal-dialog {
+    width: calc(100% - 1rem);
+    max-width: none;
+    margin: 0.5rem auto;
+  }
+  #photoModal .modal-content {
+    max-height: calc(100dvh - 1rem);
+    border-radius: 14px;
+  }
+  #photoModal .modal-header {
+    padding: 0.7rem 0.85rem;
+  }
+  #photoModal .photo-modal img,
+  #photoModal #modalImage {
+    width: 100%;
+    height: auto;
+    max-height: calc(100dvh - 170px);
+    object-fit: contain;
+  }
+  #photoModal #modalCaption {
+    padding: 0.75rem !important;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .friend-toast {
+    width: max-content;
+    max-width: calc(100vw - 2rem);
+    white-space: normal;
+    text-align: center;
+  }
+}
+@media (max-width: 380px) {
+  .container, .container-fluid {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .row {
+    --bs-gutter-x: 0.65rem;
+  }
+  .memory-card {
+    height: 235px;
+  }
+  #photoModal .modal-dialog {
+    width: calc(100% - 0.75rem);
+  }
+  #photoModal .photo-modal img,
+  #photoModal #modalImage {
+    max-height: calc(100dvh - 150px);
+  }
+}
